@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "ContextKeeper",
+  "name": "Afey Tabs",
   "version": "1.0.0",
   "description": "Save selected tabs or your full workspace. By Wafyro Software.",
   "permissions": [
@@ -8,7 +8,7 @@
     "storage"
   ],
   "action": {
-    "default_title": "ContextKeeper",
+    "default_title": "Afey Tabs",
     "default_popup": "popup.html",
     "default_icon": {
       "16": "icons/icon16.png",

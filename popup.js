@@ -57,7 +57,7 @@ async function dismissWelcomeGuide(markAsSeen) {
     try {
       await chrome.storage.local.set({ [GUIDE_SEEN_KEY]: true });
     } catch (error) {
-      console.error("ContextKeeper: could not save guide preference", error);
+      console.error("Afey Tabs: could not save guide preference", error);
     }
   }
 }
@@ -94,7 +94,7 @@ async function openTabPicker(customName = "") {
     tabPicker.scrollIntoView({ behavior: "smooth", block: "nearest" });
     showStatus("");
   } catch (error) {
-    console.error("ContextKeeper: could not read current tabs", error);
+    console.error("Afey Tabs: could not read current tabs", error);
     showStatus("Could not read tabs. Check extension permissions and try again.", true);
   }
 }
@@ -191,7 +191,7 @@ async function saveChosenTabs(tabsToSave) {
     workspaceNoteInput.value = "";
     showStatus(`Saved ${tabsToSave.length} of ${availableTabs.length} available tabs.`);
   } catch (error) {
-    console.error("ContextKeeper: failed to save workspace", error);
+    console.error("Afey Tabs: failed to save workspace", error);
     showStatus("Could not save workspace. Reload the extension and try again.", true);
   }
 }
@@ -304,7 +304,7 @@ async function restoreSession(sessionId) {
       });
       restored += 1;
     } catch (error) {
-      console.warn("ContextKeeper: could not restore a tab", tab.url, error);
+      console.warn("Afey Tabs: could not restore a tab", tab.url, error);
     }
   }
 
@@ -342,7 +342,7 @@ function editNote(sessionId) {
       await persistSessions();
       showStatus("Workspace note saved.");
     } catch (error) {
-      console.error("ContextKeeper: failed to save note", error);
+      console.error("Afey Tabs: failed to save note", error);
       showStatus("Could not save note. Please try again.", true);
     }
   });
@@ -362,7 +362,7 @@ async function deleteSession(sessionId) {
 
 function exportSessions() {
   const backup = {
-    app: "ContextKeeper",
+    app: "Afey Tabs",
     schemaVersion: 1,
     exportedAt: new Date().toISOString(),
     sessions
@@ -371,7 +371,7 @@ function exportSessions() {
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
-  link.download = `contextkeeper-backup-${new Date().toISOString().slice(0, 10)}.json`;
+  link.download = `afey-tabs-backup-${new Date().toISOString().slice(0, 10)}.json`;
   link.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
   showStatus("Backup export started.");
@@ -403,6 +403,6 @@ document.addEventListener("keydown", (event) => {
 });
 
 loadSessions().catch((error) => {
-  console.error("ContextKeeper: could not load saved workspaces", error);
+  console.error("Afey Tabs: could not load saved workspaces", error);
   showStatus("Could not load workspaces. Reload the extension and try again.", true);
 });

@@ -1,8 +1,8 @@
-# ContextKeeper
+# Afey Tabs
 
 **Save your workspace. Remember your progress.**
 
-ContextKeeper is a local-first Chrome extension by **Wafyro Software** that helps you save the web tabs related to a task and add a note so you can remember what you were doing when you return.
+Afey Tabs is a local-first Chrome extension by **Wafyro Software** that helps you save the web tabs related to a task and add a note so you can remember what you were doing when you return.
 
 **Current release: `v1.0.0` — Stable**
 
@@ -25,8 +25,8 @@ ContextKeeper is a local-first Chrome extension by **Wafyro Software** that help
 2. Open `chrome://extensions` in Google Chrome.
 3. Turn on **Developer mode**.
 4. Select **Load unpacked**.
-5. Choose the extracted `ContextKeeper` folder — the one containing `manifest.json`.
-6. Open the ContextKeeper extension. On first open, the quick-start guide explains the basics.
+5. Choose the extracted `Afey Tabs` folder — the one containing `manifest.json`.
+6. Open the Afey Tabs extension. On first open, the quick-start guide explains the basics.
 
 ## Quick start
 
@@ -40,7 +40,7 @@ ContextKeeper is a local-first Chrome extension by **Wafyro Software** that help
 ## Privacy
 
 - Workspace data is stored in the browser using `chrome.storage.local`.
-- ContextKeeper does not require an account or intentionally send saved workspace data to a ContextKeeper server.
+- Afey Tabs does not require an account or intentionally send saved workspace data to a Afey Tabs server.
 - When you save a workspace, the extension stores the selected tab titles and URLs, pinned state, workspace name, and optional note.
 - **Local storage is not encryption.** Do not save passwords, access tokens, confidential URLs, or other sensitive information in notes. Exported JSON backups can contain URLs and notes; keep them secure.
 - The extension currently saves eligible HTTP/HTTPS tabs from the current browser window. Browser-internal pages and other non-web URLs are excluded.
