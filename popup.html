@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#0a0f1b">
+  <title>ContextKeeper</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <section id="welcomeGuide" class="guide-backdrop" hidden role="dialog" aria-modal="true" aria-labelledby="guideTitle" aria-describedby="guideIntro">
+      <div class="guide-card">
+        <div class="guide-mark"><img src="icons/icon48.png" alt=""></div>
+        <div class="eyebrow">QUICK START GUIDE</div>
+        <h2 id="guideTitle">Welcome to ContextKeeper</h2>
+        <p id="guideIntro" class="guide-intro">Save your workspace. Remember your progress.</p>
+        <ol class="guide-steps">
+          <li><span class="guide-number">1</span><div><strong>Save your workspace</strong><p>Choose <b>Save current workspace</b> to see your open web tabs.</p></div></li>
+          <li><span class="guide-number">2</span><div><strong>Choose tabs and add a note</strong><p>Select the tabs you want, give the workspace a name, and add what you were working on or what comes next.</p></div></li>
+          <li><span class="guide-number">3</span><div><strong>Return when you’re ready</strong><p>Use <b>Restore</b> to reopen saved tabs, <b>Edit note</b> to update your context, or <b>Delete</b> to remove a workspace.</p></div></li>
+          <li><span class="guide-number">4</span><div><strong>Keep a backup</strong><p>Use <b>Export</b> to download a JSON backup of your saved workspaces.</p></div></li>
+        </ol>
+        <p class="guide-privacy">Your workspaces are stored locally in this browser. Notes and backups may contain sensitive URLs or information, so don’t save secrets.</p>
+        <button id="dismissGuideBtn" class="primary-button guide-start" type="button">Got it, let’s start</button>
+        <button id="reopenGuideLaterBtn" class="guide-later" type="button">Close for now</button>
+      </div>
+    </section>
+
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand-icon" aria-hidden="true">
+        <img src="icons/icon48.png" alt="">
+      </div>
+      <div class="brand-text">
+        <h1>ContextKeeper</h1>
+        <p>by Wafyro Software</p>
+      </div>
+      <div class="privacy-indicator" title="Your data stays in this browser" aria-label="Local storage">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg>
+      </div>
+    </header>
+
+    <section class="hero-panel">
+      <div class="eyebrow">WORKSPACE MEMORY</div>
+      <h2>Pick up where<br><span>you left off.</span></h2>
+      <p class="hero-description">Keep your tabs, thoughts, and next steps together in one place.</p>
+      <button id="saveSessionBtn" class="primary-button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>
+        <span>Save current workspace</span>
+      </button>
+      <p id="statusMessage" class="status-message" role="status" aria-live="polite"></p>
+    </section>
+
+    <form id="sessionForm" class="create-session">
+      <label class="sr-only" for="sessionName">Workspace name</label>
+      <div class="input-wrap">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H19v16H5.5A1.5 1.5 0 0 1 4 18.5z"></path><path d="M4 17.5A1.5 1.5 0 0 1 5.5 16H19M8 8h7M8 11h5"></path></svg>
+        <input id="sessionName" type="text" maxlength="80" placeholder="Name this workspace" autocomplete="off">
+      </div>
+      <button type="submit" class="secondary-button">Save</button>
+    </form>
+
+    <section id="tabPicker" class="tab-picker" hidden aria-labelledby="tabPickerTitle">
+      <div class="picker-heading">
+        <div>
+          <div class="eyebrow">CHOOSE YOUR TABS</div>
+          <h3 id="tabPickerTitle">What do you want to save?</h3>
+        </div>
+        <button id="closePickerBtn" class="icon-button" type="button" aria-label="Close tab selection">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"></path></svg>
+        </button>
+      </div>
+      <div class="picker-toolbar">
+        <span id="pickerTabCount" class="picker-count">0 tabs available</span>
+        <button id="toggleAllTabsBtn" class="text-button" type="button">Select all</button>
+      </div>
+      <div id="tabChoices" class="tab-choices"></div>
+      <div class="optional-note">
+        <label for="workspaceNote">Workspace note <span>Optional</span></label>
+        <textarea id="workspaceNote" rows="2" maxlength="2000" placeholder="What are you working on? What should you remember?"></textarea>
+      </div>
+      <div class="picker-actions">
+        <button id="saveSelectedBtn" class="primary-button" type="button">Save selected</button>
+        <button id="saveAllBtn" class="secondary-button" type="button">Save all tabs</button>
+      </div>
+      <p class="picker-hint">Only the tabs you choose will be stored in this workspace.</p>
+    </section>
+
+    <section class="library-section">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">YOUR LIBRARY</div>
+          <h3>Saved workspaces <span id="sessionCount" class="count-badge">0</span></h3>
+        </div>
+        <button id="exportBtn" class="export-button" title="Export workspace backup">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"></path><path d="M5 16v4h14v-4"></path></svg>
+          <span>Export</span>
+        </button>
+      </div>
+      <div id="sessionsList" class="sessions-list">
+        <div class="empty-state">
+          <div class="empty-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="15" rx="2"></rect><path d="M3 8h18M7 6h.01M10 6h.01"></path></svg>
+          </div>
+          <strong>No saved workspaces yet</strong>
+          <p>Save your current tabs to create your first workspace.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="app-footer">
+      <div class="footer-brand">
+        <span class="footer-company">Wafyro Software</span>
+        <span class="footer-founder">Afee Muhammod Wafy · Founder &amp; Software Developer</span>
+      </div>
+      <div class="local-label">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 19 6v5c0 4.5-3 7.8-7 10-4-2.2-7-5.5-7-10V6z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        <span>Local-first</span>
+      </div>
+    </footer>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>
