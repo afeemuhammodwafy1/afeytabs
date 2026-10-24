@@ -1,5 +1,7 @@
 # Afey Tabs
 
+![Afey Tabs preview](docs/afeytabs.webp)
+
 **Save your workspace. Remember your progress.**
 
 Afey Tabs is a local-first Chrome extension by **Wafyro Software** that helps you save the web tabs related to a task and add a note so you can remember what you were doing when you return.
