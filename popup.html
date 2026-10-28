@@ -94,10 +94,17 @@
           <div class="eyebrow">YOUR LIBRARY</div>
           <h3>Saved workspaces <span id="sessionCount" class="count-badge">0</span></h3>
         </div>
-        <button id="exportBtn" class="export-button" title="Export workspace backup">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"></path><path d="M5 16v4h14v-4"></path></svg>
-          <span>Export</span>
-        </button>
+        <div class="library-tools">
+          <button id="importBtn" class="export-button" type="button" title="Import workspace backup">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5"></path><path d="M5 16v4h14v-4"></path></svg>
+            <span>Import</span>
+          </button>
+          <button id="exportBtn" class="export-button" type="button" title="Export workspace backup">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5"></path><path d="M5 16v4h14v-4"></path></svg>
+            <span>Export</span>
+          </button>
+          <input id="importFile" type="file" accept="application/json,.json" hidden>
+        </div>
       </div>
       <div id="sessionsList" class="sessions-list">
         <div class="empty-state">

@@ -83,6 +83,7 @@ svg {
 .section-heading h3 { display: flex; align-items: center; gap: 7px; margin: 0; font-size: 14px; letter-spacing: -.3px; font-weight: 720; }
 .count-badge { display: inline-grid; place-items: center; min-width: 20px; height: 19px; padding: 0 5px; border: 1px solid var(--border); border-radius: 6px; color: var(--muted); background: var(--surface-raised); font-size: 10px; font-weight: 650; }
 .export-button { display: inline-flex; align-items: center; gap: 5px; border: 0; padding: 5px 0; color: var(--accent); background: transparent; font-size: 10px; font-weight: 700; }
+.library-tools { display: flex; align-items: center; gap: 12px; }
 .export-button svg { width: 14px; height: 14px; }
 .export-button:hover { color: #B7F3CE; }
 .sessions-list { display: flex; flex-direction: column; gap: 8px; }
